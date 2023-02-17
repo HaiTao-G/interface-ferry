@@ -1,0 +1,81 @@
+server:
+  port: 8082
+
+# curator配置
+curator-client:
+  # 连接字符串
+  connection-string: 10.76.210.11:2181,10.76.210.12:2181,10.76.210.13:2181,10.76.210.14:2181,10.76.210.15:2181
+  # 根节点
+  namespace: interface
+  # 节点数据编码
+  charset: utf8
+  # session超时时间
+  session-timeout-ms: 60000
+  # 连接超时时间
+  connection-timeout-ms: 15000
+  # 关闭连接超时时间
+  max-close-wait-ms: 1000
+  # 默认数据
+  default-data: ""
+  # 当半数以上zookeeper服务出现故障仍然提供读服务
+  can-be-read-only: false
+  # 自动创建父节点
+  use-container-parents-if-available: true
+  # 重试策略，默认使用BoundedExponentialBackoffRetry
+  retry:
+    max-sleep-time-ms: 10000
+    base-sleep-time-ms: 1000
+    max-retries: 3
+  # 认证信息
+  auth:
+    scheme: digest
+    auth: interface:interface
+  enabled: true
+
+#内网文件监听路径
+inside:
+  #内网指令文件路径
+  interfacePath: /data/rw_out/interface_out01
+  #内网附件文件路径
+  filePath: /data/rw_out/interface_out02
+
+#数据库指令存储starter配置
+datasource:
+  enabled: false
+  url: 123
+  driver-class-name: 123
+  user-name: 123
+  password: 123
+
+#fastdfs 配置
+fastdfs:
+  enabled: true
+  # tracker服务
+  tracker-servers:
+    - ${FAST_NGINX_TRACKER:10.76.209.39:22122}
+  # 固定分组
+  default-group: "group1"
+  http:
+    # web地址
+    web-servers: "http://10.76.209.39:8888"
+    # 访问地址是否包含group
+    url-have-group: true
+    # 开启防盗链
+    #http-anti-steal-token: true
+    # 防盗链密钥
+    #secret-key: "FastDFS1234567890"
+  connection:
+    #scoket超时
+    socket-timeout: 30000
+    #连接超时
+    connect-timeout: 2000
+    #tracker重试
+    retry-after-second: 30
+    pool:
+      max-wait-millis: 5000
+      max-total-per-key: 500
+      max-idle-per-key: 100
+      min-idle-per-key: 10
+      min-evictable-idle-time-millis: 1800000
+      soft-min-evictable-idle-time-millis: 60000
+      test-on-borrow: true

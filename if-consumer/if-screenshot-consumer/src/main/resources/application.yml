@@ -1,0 +1,129 @@
+server:
+  port: 8086
+
+spring:
+  kafka:
+    # kafka集群ip:port
+    bootstrap-servers: 192.168.11.184:9092,192.168.11.185:9092,192.168.11.186:9092
+    # consumer消费者
+    consumer:
+      # 默认的消费组ID
+      group-id: defaultConsumerGroup
+      # 是否自动提交offset
+      enable-auto-commit: true
+      # 提交offset延时(接收到消息后多久提交offset)
+      auto-commit-interval: 5000
+      # earliest:当各分区下有已提交的offset时，从提交的offset开始消费；无提交的offset时，从头开始消费
+      # latest:当各分区下有已提交的offset时，从提交的offset开始消费；无提交的offset时，消费新产生的该分区下的数据
+      # none:topic各分区都存在已提交的offset时，从offset后开始消费；只要有一个分区不存在已提交的offset，则抛出异常
+      auto-offset-reset: latest
+      # 读Kafka数据，key采用的反序列化方式
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      # 读Kafka数据，数据采用的反序列化方式
+      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      # 消费端监听的topic不存在时，项目启动会报错(关掉)
+      missing-topics-fatal: false
+      # 设置批量消费
+      # type: batch
+      # 批量消费每次最多消费多少条消息
+      # max-poll-records: 50
+
+# kafkatopic队列名称
+kafka:
+  topic: screenshot
+
+# 是否内外网环境
+isIntranet: false
+
+# ftp配置
+ftp:
+  # 是否启用ftp-start
+  enabled: false
+  # ftp服务器地址
+  host: 10.51.225.90
+  # ftp服务器账号
+  userName: ftpuser_out
+  #  ftp服务器密码
+  password: cdmtc@scwx111
+  #  被动模式
+  passive-mode: true
+  # 默认路径
+  base-path: /data/rw_out
+
+# curator配置
+curator-client:
+  enabled: true
+  # 连接字符串
+  connection-string: 192.168.11.63:2181
+  # 根节点
+  namespace: interface
+  # 节点数据编码
+  charset: utf8
+  # session超时时间
+  session-timeout-ms: 60000
+  # 连接超时时间
+  connection-timeout-ms: 15000
+  # 关闭连接超时时间
+  max-close-wait-ms: 1000
+  # 默认数据
+  default-data: ""
+  # 当半数以上zookeeper服务出现故障仍然提供读服务
+  can-be-read-only: false
+  # 自动创建父节点
+  use-container-parents-if-available: true
+  # 重试策略，默认使用BoundedExponentialBackoffRetry
+  retry:
+    max-sleep-time-ms: 10000
+    base-sleep-time-ms: 1000
+    max-retries: 3
+  # 认证信息
+  auth:
+    scheme: digest
+    auth: interface:interface
+
+#fastdfs 配置
+fastdfs:
+  enabled: true
+  # tracker服务
+  tracker-servers:
+    - "192.168.11.133:22122"
+  # 固定分组
+  default-group: "group1"
+  http:
+    # web地址
+    web-servers: "http://192.168.11.133:8888"
+    # 访问地址是否包含group
+    url-have-group: true
+    # 开启防盗链
+    #http-anti-steal-token: true
+    # 防盗链密钥
+    #secret-key: "FastDFS1234567890"
+  connection:
+    #scoket超时
+    socket-timeout: 30000
+    #连接超时
+    connect-timeout: 2000
+    #tracker重试
+    retry-after-second: 30
+    pool:
+      max-wait-millis: 5000
+      max-total-per-key: 500
+      max-idle-per-key: 100
+      min-idle-per-key: 10
+      min-evictable-idle-time-millis: 1800000
+      soft-min-evictable-idle-time-millis: 60000
+      test-on-borrow: true
+
+# Selenium Grid 配置
+chromedriver:
+  port: 4443
+  ip: 192.168.0.30
+  remoteUrl : http://192.168.11.98:4444/wd/hub
+  enable: true
+
+#外网ftp文件上传
+inside:
+  #外网指令文件路径
+  interfacePath: interface_out01
+  #外网附件文件路径
+  filePath: interface_out02

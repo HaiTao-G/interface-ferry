@@ -1,0 +1,20 @@
+server:
+  port: 9091
+
+#thymelea模板配置
+spring:
+  thymeleaf:
+    prefix: classpath:/templates/
+    suffix: .html
+    mode: HTML5
+    encoding: UTF-8
+#    content-type: text/html
+#    cache:
+#      falsechain:
+#       strategy:
+#        content:
+#         enabled: true
+#    chain:
+#      strategy:
+#        content:
+#          paths: /**

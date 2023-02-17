@@ -1,0 +1,29 @@
+server:
+  port: 8082
+
+#ftp:
+#  # 是否启用ftp-start
+#  enabled: true
+#  # ftp服务器地址
+#  host: localhost
+#  # ftp服务器账号
+#  userName: test
+#  #  ftp服务器密码
+#  password: test
+#  # 被动模式
+#  passive-mode: true
+
+
+ftp:
+  # 是否启用ftp-start
+  enabled: true
+  # ftp服务器地址
+  host: 10.51.225.90
+  # ftp服务器账号
+  userName: ftpuser_out
+  #  ftp服务器密码
+  password: cdmtc@scwx111
+  #  被动模式
+  passive-mode: true
+
+name: ${profileActive}

@@ -1,0 +1,33 @@
+server:
+  port: 8085
+
+spring:
+  kafka:
+    bootstrap-servers: 10.51.225.82:9092,10.51.225.84:9092,10.51.225.86:9092
+    # producer 生产者
+    producer:
+      # 重试次数
+      retries: 0
+      # 应答级别:多少个分区副本备份完成时向生产者发送ack确认(可选0、1、all/-1)
+      acks: -1
+      # 批量大小
+      batch-size: 16384
+      # 生产端缓冲区大小
+      buffer-memory: 33554432
+      # 向Kafka发送数据，key采用的序列化方式
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      # 向Kafka发送数据，value采用的序列化方式
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer
+
+
+#外网指令文件监听路径
+outside:
+  interfacePath: /data/rw_in/interface_in01
+
+#数据库指令存储starter配置
+datasource:
+  enabled: false
+  url: 123
+  driver-class-name: 123
+  user-name: 123
+  password: 123
