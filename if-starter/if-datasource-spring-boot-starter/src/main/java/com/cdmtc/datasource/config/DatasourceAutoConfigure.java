@@ -23,6 +23,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 @Configuration
 @ConditionalOnClass(InstructionDao.class)
 @EnableConfigurationProperties(DataSourceConfig.class)
+@ConditionalOnProperty(prefix = "datasource", value = "enabled", havingValue = "true")
 public class DatasourceAutoConfigure {
 
     @Autowired
@@ -30,14 +31,12 @@ public class DatasourceAutoConfigure {
 
     @Bean
     @ConditionalOnMissingBean
-    @ConditionalOnProperty(prefix = "datasource", value = "enabled", havingValue = "true")
     public InstructionDao instructionDao(@Qualifier("myJdbcTemplate") JdbcTemplate jdbcTemplate) {
         return new InstructionDaoImpl(jdbcTemplate);
     }
 
     @Bean
     @ConditionalOnMissingBean
-    @ConditionalOnProperty(prefix = "datasource", value = "enabled", havingValue = "true")
     public JdbcTemplate myJdbcTemplate() {
         // 创建基础hikari数据源
         DataSourceBuilder<HikariDataSource> hikariDataSourceBuilder = DataSourceBuilder.create().type(HikariDataSource.class);
