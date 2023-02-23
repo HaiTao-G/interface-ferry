@@ -7,6 +7,7 @@ import com.cdmtc.datasource.dao.InstructionDao;
 import com.cdmtc.entity.Instruction;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 
 import java.util.Date;
@@ -43,6 +44,13 @@ public class InstructionDaoImpl implements InstructionDao {
             "`createTime` = ?, `updateTime` = ? " +
             "WHERE `request_id` = ?;";
 
+    /**
+     * 根据主键查询
+     */
+    private static final String SELECT_SQL = "SELECT * " +
+            "FROM `instruction` " +
+            "WHERE `id` = ?";
+
     final JdbcTemplate jdbcTemplate;
 
     @Override
@@ -60,6 +68,13 @@ public class InstructionDaoImpl implements InstructionDao {
                 instruction.getOutsideStatus(),instruction.getResult(),instruction.getErrMsg(), CollUtil.join(instruction.getOutsideFileName(),DIVISION_SIGN),
                 CollUtil.join(instruction.getWithinFiLeName(),DIVISION_SIGN), DateUtil.parse(instruction.getCreateTime()),DateUtil.parse(instruction.getUpdateTime()),
                 instruction.getRequestId());
+    }
+
+    @Override
+    public Instruction selectById(Integer id) {
+        Instruction instruction = jdbcTemplate.queryForObject(SELECT_SQL,
+                new BeanPropertyRowMapper<>(Instruction.class), id);
+        return instruction;
     }
 }
 

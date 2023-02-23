@@ -18,6 +18,7 @@
         <module>if-ftp-demo</module>
         <module>if-screenshot-tool-demo</module>
         <module>if-fastdfs-demo</module>
+        <module>if-datasource-cache-demo</module>
     </modules>
 
     <properties>

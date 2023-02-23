@@ -21,4 +21,11 @@ public interface InstructionDao {
      * @param instruction
      */
     void updateInstruction(Instruction instruction);
+
+    /**
+     * 根据主键标识获取
+     * @param id
+     * @return
+     */
+    Instruction selectById(Integer id);
 }

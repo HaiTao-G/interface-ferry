@@ -40,6 +40,7 @@
         <commons-io.version>2.11.0</commons-io.version>
         <fastdfs-client.version>1.0.0</fastdfs-client.version>
         <jsch.version>0.1.55</jsch.version>
+        <ehcache.version>2.10.6</ehcache.version>
         <maven-compiler-plugin.version>3.8.0</maven-compiler-plugin.version>
         <maven-surefire-plugin.version>2.22.2</maven-surefire-plugin.version>
     </properties>
@@ -156,6 +157,11 @@
                 <groupId>io.github.ykrenz</groupId>
                 <artifactId>fastdfs-client</artifactId>
                 <version>${fastdfs-client.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>net.sf.ehcache</groupId>
+                <artifactId>ehcache</artifactId>
+                <version>${ehcache.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
