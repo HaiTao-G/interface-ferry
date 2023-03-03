@@ -1,6 +1,6 @@
 ## 接口摆渡项目数据流程图
 
-![橙讯图片_1661306488652](https://i.postimg.cc/y8tVrLM8/drawio.png)
+[![drawio.png](https://i.postimg.cc/QChnFfG2/drawio.png)](https://postimg.cc/MM3Y4bG5)
 
 ## 核心依赖
 
